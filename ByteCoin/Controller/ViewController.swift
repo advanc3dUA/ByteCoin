@@ -15,12 +15,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var bitcoinLabel: UILabel!
     
     let coinManager = CoinManager()
+    var coinsModel: CoinsModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+        
+//        coinsModel = coinManager.getCoinPrices()
     }
 
 
