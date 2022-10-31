@@ -9,6 +9,6 @@
 import Foundation
 
 protocol CoinsModelDelegate {
-    func didUpdatePrice(_ coinManager: CoinManager, coinsModel: CoinsModel)
+    func didUpdatePrices(_ coinManager: CoinManager, coinsModel: CoinsModel)
     func didFailWithError(with error: Error)
 }

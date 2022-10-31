@@ -9,12 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var bitcoinLabel: UILabel!
     
-    let coinManager = CoinManager()
+    var coinManager = CoinManager()
     var coinsModel: CoinsModel?
     
     override func viewDidLoad() {
@@ -22,8 +23,9 @@ class ViewController: UIViewController {
         
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+        coinManager.delegate = self
         
-//        coinsModel = coinManager.getCoinPrices()
+        coinManager.getCoinsPrices()
     }
 
 

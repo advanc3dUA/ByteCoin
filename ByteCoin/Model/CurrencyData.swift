@@ -8,14 +8,6 @@
 
 import Foundation
 
-//struct CurrencyData: Codable {
-//    let bitcoin: Bitcoin
-//}
-//
-//struct Bitcoin: Codable {
-//    let usd: Double
-//}
-
 struct CurrencyData: Codable {
     let bitcoin: Currency
     let ethereum: Currency

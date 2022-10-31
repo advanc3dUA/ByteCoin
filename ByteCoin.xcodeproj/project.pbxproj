@@ -19,6 +19,7 @@
 		BF083E4F290FD38E007CF77F /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF083E4E290FD38E007CF77F /* CurrencyData.swift */; };
 		BF083E53290FE624007CF77F /* CoinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF083E52290FE624007CF77F /* CoinsModel.swift */; };
 		BF083E55290FE69B007CF77F /* CoinsModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF083E54290FE69B007CF77F /* CoinsModelDelegate.swift */; };
+		BF083E57290FECAA007CF77F /* VC+CoinManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF083E56290FECAA007CF77F /* VC+CoinManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BF083E4E290FD38E007CF77F /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		BF083E52290FE624007CF77F /* CoinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsModel.swift; sourceTree = "<group>"; };
 		BF083E54290FE69B007CF77F /* CoinsModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsModelDelegate.swift; sourceTree = "<group>"; };
+		BF083E56290FECAA007CF77F /* VC+CoinManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+CoinManagerDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				ADA8AC0C2329367100626376 /* ViewController.swift */,
+				BF083E56290FECAA007CF77F /* VC+CoinManagerDelegate.swift */,
 				BF083E4C290FC1D3007CF77F /* VC+PickerViewDelegate.swift */,
 				BF083E4A290FC0C2007CF77F /* VC+PickerViewDataSource.swift */,
 			);
@@ -180,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF083E57290FECAA007CF77F /* VC+CoinManagerDelegate.swift in Sources */,
 				BF083E53290FE624007CF77F /* CoinsModel.swift in Sources */,
 				BF083E4B290FC0C2007CF77F /* VC+PickerViewDataSource.swift in Sources */,
 				ADA8AC202329398300626376 /* CoinManager.swift in Sources */,

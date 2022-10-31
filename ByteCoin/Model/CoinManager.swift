@@ -18,20 +18,14 @@ struct CoinManager {
     
     let currencyArray = ["bitcoin", "ethereum", "binancecoin"]
     
-        func getCoinPrice(for currency: String) {
-            performRequest(with: currency)
-        }
-    
-//    func getCoinPrices() {
-//        performRequest(with: baseURL)
-//    }
-    
-    private func performRequest(with currency: String) {
+    func getCoinsPrices() {
         guard let url = URL(string: baseURL) else { return }
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, error in
+        session.dataTask(with: url) { data, response, error in
             if let data = data {
-                parseJSON(data)
+                if let prices = parseJSON(data) {
+                    delegate?.didUpdatePrices(self, coinsModel: prices)
+                }
             } else if let error = error {
                 print(error.localizedDescription)
                 return
@@ -48,7 +42,6 @@ struct CoinManager {
             let bnbPrice = decodedData.binancecoin.usd
             
             let coins = CoinsModel(btc: btcPrice, eth: ethPrice, bnb: bnbPrice)
-            print(coins.btc, coins.eth)
             return coins
         } catch {
             print(error.localizedDescription, "here")
