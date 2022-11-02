@@ -11,12 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var priceLabel: UILabel!
     
     var coinManager = CoinManager()
     var coinsModel: CoinsModel?
-    
+    var refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +26,10 @@ class ViewController: UIViewController {
         coinManager.delegate = self
         
         coinManager.getCoinsPrices()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "pull to refresh")
+        refreshControl.addTarget(self, action: #selector(updatePrices), for: .valueChanged)
+        scrollView.addSubview(refreshControl)
     }
     
     func updateUI(with selectedCoinNumber: Int) {
@@ -34,6 +39,12 @@ class ViewController: UIViewController {
                 self.priceLabel.text = priceString
             }
         }
+    }
+    
+    @objc private func updatePrices() {
+        coinManager.getCoinsPrices()
+        refreshControl.endRefreshing()
+        currencyPicker.selectRow(0, inComponent: 0, animated: true)
     }
 }
 
