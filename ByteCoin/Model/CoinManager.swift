@@ -10,16 +10,23 @@ import Foundation
 
 struct CoinManager {
     
-    //let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
-    //let baseURL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="
-    let baseURL = "https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids=bitcoin,ethereum,binancecoin"
+    let baseURL = "https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids="
     
     var delegate: CoinsModelDelegate?
     
-    let currencyArray = ["bitcoin", "ethereum", "binancecoin"]
+    let currencyArray = ["bitcoin", "ethereum", "binancecoin", "chia", "cosmos", "polkastarter", "polkadot", "pancakeswap-token", "flow", "matic-network", "near", "mina-protocol"]
+    
+    private func generateURL() -> URL? {
+        var urlString = baseURL
+        for currency in currencyArray {
+            urlString += ",\(currency)"
+        }
+        guard let url = URL(string: urlString) else { return nil }
+        return url
+    }
     
     func getCoinsPrices() {
-        guard let url = URL(string: baseURL) else { return }
+        guard let url = generateURL() else { return }
         let session = URLSession(configuration: .default)
         session.dataTask(with: url) { data, response, error in
             if let data = data {
@@ -27,7 +34,7 @@ struct CoinManager {
                     delegate?.didUpdatePrices(self, coinsModel: prices)
                 }
             } else if let error = error {
-                print(error.localizedDescription)
+                delegate?.didFailWithError(with: error)
                 return
             }
         }.resume()
@@ -37,14 +44,23 @@ struct CoinManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(CurrencyData.self, from: cryptoData)
-            let btcPrice = decodedData.bitcoin.usd
-            let ethPrice = decodedData.ethereum.usd
-            let bnbPrice = decodedData.binancecoin.usd
             
-            let coins = CoinsModel(btc: btcPrice, eth: ethPrice, bnb: bnbPrice)
+            var coins = CoinsModel()
+            coins.coinsPrices.append(decodedData.bitcoin.usd)
+            coins.coinsPrices.append(decodedData.ethereum.usd)
+            coins.coinsPrices.append(decodedData.binancecoin.usd)
+            coins.coinsPrices.append(decodedData.chia.usd)
+            coins.coinsPrices.append(decodedData.cosmos.usd)
+            coins.coinsPrices.append(decodedData.polkastarter.usd)
+            coins.coinsPrices.append(decodedData.polkadot.usd)
+            coins.coinsPrices.append(decodedData.cake.usd)
+            coins.coinsPrices.append(decodedData.flow.usd)
+            coins.coinsPrices.append(decodedData.matic.usd)
+            coins.coinsPrices.append(decodedData.near.usd)
+            coins.coinsPrices.append(decodedData.mina.usd)
             return coins
         } catch {
-            print(error.localizedDescription, "here")
+            delegate?.didFailWithError(with: error)
         }
         return nil
     }

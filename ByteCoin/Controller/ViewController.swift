@@ -12,8 +12,7 @@ class ViewController: UIViewController {
     
 
     @IBOutlet weak var currencyPicker: UIPickerView!
-    @IBOutlet weak var currencyLabel: UILabel!
-    @IBOutlet weak var bitcoinLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     var coinManager = CoinManager()
     var coinsModel: CoinsModel?
@@ -27,7 +26,14 @@ class ViewController: UIViewController {
         
         coinManager.getCoinsPrices()
     }
-
-
+    
+    func updateUI(with selectedCoinNumber: Int) {
+        if let priceSelected = coinsModel?.coinsPrices[selectedCoinNumber] {
+            let priceString = String(format: "%.2f", priceSelected)
+            DispatchQueue.main.async {
+                self.priceLabel.text = priceString
+            }
+        }
+    }
 }
 

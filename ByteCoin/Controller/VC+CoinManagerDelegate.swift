@@ -11,6 +11,7 @@ import UIKit
 extension ViewController: CoinsModelDelegate {
     func didUpdatePrices(_ coinManager: CoinManager, coinsModel: CoinsModel) {
         self.coinsModel = coinsModel
+        self.updateUI(with: 0)
     }
     
     func didFailWithError(with error: Error) {

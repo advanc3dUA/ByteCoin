@@ -9,7 +9,5 @@
 import Foundation
 
 struct CoinsModel {
-    let btc: Double
-    let eth: Double
-    let bnb: Double
+    var coinsPrices: [Double] = []
 }
