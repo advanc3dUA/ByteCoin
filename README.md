@@ -31,4 +31,4 @@ Enjoy!
 [advanc3dUA](https://github.com/advanc3dUA)
 
 ## License
-The project Snakev2 is distributed under MIT license.
+The project ByteCoin is distributed under MIT license.
